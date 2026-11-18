@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Street Caffeine</title>
+<style>
+:root{--bg:#14110f;--card:#1f1a17;--fg:#f5efe6;--mut:#b8a99a;--acc:#ffb300;--wa:#25d366;--line:#352d27;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.45}
+.w{max-width:900px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:Impact,"Arial Narrow Bold",sans-serif;letter-spacing:.04em;margin:0;text-transform:uppercase}
+.hero{text-align:center;padding:44px 0 24px}.hero h1{font-size:clamp(40px,12vw,76px);color:var(--acc);line-height:1}
+.hero p{color:var(--mut);margin:8px 0 14px}
+.pill{display:inline-block;padding:6px 14px;border-radius:99px;font-size:14px;font-weight:600}
+.open{background:#163a22;color:#6be08f}.closed{background:#3d1d1d;color:#ff8f8f}
+.banner{background:var(--acc);color:#1a1200;padding:10px 16px;text-align:center;font-weight:700}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:14px 16px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;scrollbar-width:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--fg);padding:8px 14px;border-radius:99px;font-size:14px;text-decoration:none}
+h2{font-size:28px;margin:26px 0 12px;color:var(--acc)}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;gap:12px;align-items:center}
+.em{font-size:34px;width:54px;height:54px;border-radius:12px;background:#2a2320;display:grid;place-items:center;flex:none}
+.inf{flex:1;min-width:0}.inf b{display:block}.inf small{color:var(--mut)}.pr{color:var(--acc);font-weight:700;margin-top:2px}
+button,.btn{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:9px 14px;background:var(--acc);color:#1a1200;font-weight:700;text-decoration:none;display:inline-block}
+button.g{background:#2f2823;color:var(--fg)}button.wa{background:var(--wa);color:#04210f;width:100%;padding:13px;font-size:16px}button.rm{background:#4a2020;color:#ffb3b3}
+button:disabled{opacity:.4}
+.qty{display:flex;align-items:center;gap:8px}.qty button{padding:4px 11px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+.card h3{font-size:20px;color:var(--fg);margin-bottom:4px}.card p{margin:0;color:var(--mut);white-space:pre-wrap}
+.cartbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:20;max-width:600px;margin:0 auto}
+.cartbar button{width:100%;padding:14px;font-size:16px;box-shadow:0 6px 24px #000a}
+.ov{position:fixed;inset:0;background:#000b;z-index:30;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--bg);width:100%;max-width:640px;max-height:92%;overflow:auto;border-radius:18px 18px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
+input,select,textarea{width:100%;font:inherit;background:#2a2320;color:var(--fg);border:1px solid var(--line);border-radius:9px;padding:9px;margin:4px 0}
+label{font-size:13px;color:var(--mut)}.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tabs{display:flex;gap:6px;margin:10px 0;flex-wrap:wrap}.tabs button{background:#2f2823;color:var(--fg)}.tabs button.on{background:var(--acc);color:#1a1200}
+.adm{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:10px;z-index:25}
+footer{text-align:center;color:var(--mut);padding:30px 16px 110px;font-size:14px}footer a{color:var(--acc)}
+.ed{border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script id="data" type="application/json">{"settings":{"name":"Street Caffeine","tagline":"Coffee. Toast. Good vibes.","wa":"60148592647","address":"Jln. UP 1/3, Ukay Perdana, 68000 Ampang, Selangor","hours":"Every day 7pm – 1am · Closed Wednesday","instagram":"","tiktok":"","facebook":"","map":"https://www.google.com/maps/search/?api=1&query=Street+Caffeine+Ukay+Perdana+Ampang"},"banner":"Welcome to Street Caffeine! Order on WhatsApp and pay in chat.","offers":[],"posts":[],"cats":["Coffee","Drinks","Drumstick Combo","Snack Time"],"items":[{"id":1,"cat":"Coffee","name":"Espresso","price":6,"emoji":"☕","desc":"Short, strong, bold"},{"id":2,"cat":"Coffee","name":"Americano","price":7,"emoji":"☕","desc":"Hot or iced"},{"id":3,"cat":"Coffee","name":"Latte","price":10,"emoji":"🥛","desc":"Smooth espresso with steamed milk"},{"id":4,"cat":"Coffee","name":"Cappuccino","price":10,"emoji":"☕","desc":"Foamy and rich"},{"id":5,"cat":"Drinks","name":"Chocolate","price":11,"emoji":"🍫","desc":"Thick, creamy chocolate"},{"id":6,"cat":"Drinks","name":"Mojito","price":10,"emoji":"🍃","desc":"Fresh mint and lime"},{"id":7,"cat":"Drinks","name":"Soda","price":8,"emoji":"🥤","desc":"Fizzy and cold"},{"id":8,"cat":"Drumstick Combo","name":"Spicy Drumstick Combo","price":16,"emoji":"🍗","desc":"Crispy, juicy, spicy"},{"id":9,"cat":"Drumstick Combo","name":"Cheese Drumstick Combo","price":17,"emoji":"🍗","desc":"Crispy chicken with cheese"},{"id":10,"cat":"Drumstick Combo","name":"Korean Drumstick Combo","price":18,"emoji":"🍗","desc":"Sweet and sticky Korean glaze"},{"id":11,"cat":"Snack Time","name":"Classic Toast","price":3.5,"emoji":"🍞","desc":"Simple and golden"},{"id":12,"cat":"Snack Time","name":"Golden Kaya Toast","price":3.5,"emoji":"🍞","desc":"Kaya and butter"},{"id":13,"cat":"Snack Time","name":"Choco Toast","price":4,"emoji":"🍫","desc":"Warm chocolate spread"},{"id":14,"cat":"Snack Time","name":"Nutty Toast","price":4.5,"emoji":"🥜","desc":"Peanut crunch"},{"id":15,"cat":"Snack Time","name":"Mix Toast","price":5,"emoji":"🍞","desc":"A bit of everything"}]}</script>
+<script>
+const CUR="RM";
+let S=JSON.parse(document.getElementById("data").textContent);
+let cart={},cartOpen=false,admin=false,tab="menu",isAdmin=false,loginOpen=false,loginErr="",form={name:"",mode:"Pickup",addr:"",note:""};
+const $=s=>document.querySelector(s);
+const esc=t=>String(t==null?"":t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money=n=>CUR+" "+(Math.round(n*100)/100).toFixed(2).replace(/\.00$/,"");
+function isOpen(){const d=new Date(new Date().toLocaleString("en-US",{timeZone:"Asia/Kuala_Lumpur"}));const h=d.getHours(),w=d.getDay();return (h>=19&&w!==3)||(h<1&&w!==4)}
+function total(){return S.items.reduce((s,i)=>s+(cart[i.id]||0)*i.price,0)}
+function count(){return Object.values(cart).reduce((a,b)=>a+b,0)}
+function render(){
+const st=S.settings,o=isOpen();document.title=st.name||"Street Caffeine";
+let h=`<div class="hero w"><h1>${esc(st.name)}</h1><p>${esc(st.tagline)}</p><span class="pill ${o?"open":"closed"}">${o?"Open now":"Closed now"}</span> <span class="pill" style="color:var(--mut)">${esc(st.hours)}</span></div>`;
+if(S.banner)h+=`<div class="banner">${esc(S.banner)}</div>`;
+h+=`<div class="chips">${S.cats.map(c=>`<a class="chip" href="#c-${S.cats.indexOf(c)}">${esc(c)}</a>`).join("")}${S.offers.length?`<a class="chip" href="#offers">Offers</a>`:""}${S.posts.length?`<a class="chip" href="#posts">Recipes & News</a>`:""}</div><div class="w">`;
+if(S.offers.length)h+=`<h2 id="offers">Offers</h2>`+S.offers.map(x=>`<div class="card"><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></div>`).join("");
+S.cats.forEach((c,ci)=>{const its=S.items.filter(i=>i.cat===c);if(!its.length)return;
+h+=`<h2 id="c-${ci}">${esc(c)}</h2><div class="grid">`+its.map(i=>{const q=cart[i.id]||0;
+return `<div class="item"><div class="em">${esc(i.emoji||"☕")}</div><div class="inf"><b>${esc(i.name)}</b><small>${esc(i.desc)}</small><div class="pr">${money(i.price)}</div></div>`+
+(i.sold?`<small>Sold out</small>`:q?`<div class="qty"><button class="g" onclick="chg(${i.id},-1)">−</button><b>${q}</b><button onclick="chg(${i.id},1)">+</button></div>`:`<button onclick="chg(${i.id},1)">Add</button>`)+`</div>`}).join("")+`</div>`});
+if(S.posts.length)h+=`<h2 id="posts">Recipes & News</h2>`+S.posts.map(x=>`<div class="card"><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></div>`).join("");
+h+=`</div><footer><b>${esc(st.name)}</b><br>${esc(st.address)}<br><a href="${esc(st.map)}" target="_blank" rel="noopener">Get directions</a><br>`+
+["instagram","tiktok","facebook"].filter(k=>st[k]).map(k=>`<a href="${esc(st[k])}" target="_blank" rel="noopener">${k[0].toUpperCase()+k.slice(1)}</a>`).join(" · ")+`</footer>`;
+if(count())h+=`<div class="cartbar"><button onclick="cartOpen=true;render()">View order · ${count()} items · ${money(total())}</button></div>`;
+h+=`<div class="adm">${isAdmin?`<button onclick="admin=true;render()">Admin</button>`:`<button class="g" onclick="loginOpen=true;render()">Staff</button>`}</div>`;
+if(cartOpen)h+=cartHtml();
+if(admin)h+=adminHtml();
+if(loginOpen&&!isAdmin)h+=loginHtml();
+$("#app").innerHTML=h}
+function chg(id,d){cart[id]=Math.max(0,(cart[id]||0)+d);if(!cart[id])delete cart[id];if(!count())cartOpen=false;render()}
+function cartHtml(){
+const rows=S.items.filter(i=>cart[i.id]).map(i=>`<div class="row"><span>${cart[i.id]} × ${esc(i.name)}</span><span>${money(cart[i.id]*i.price)}</span></div>`).join("");
+return `<div class="ov" onclick="if(event.target===this){cartOpen=false;render()}"><div class="sheet"><h2 style="margin-top:0">Your order</h2>${rows}<div class="row"><b>Total</b><b>${money(total())}</b></div>
+<label>Your name</label><input value="${esc(form.name)}" oninput="form.name=this.value" placeholder="Name">
+<label>Pickup or delivery</label><select onchange="form.mode=this.value;render()"><option ${form.mode==="Pickup"?"selected":""}>Pickup</option><option ${form.mode==="Delivery"?"selected":""}>Delivery</option></select>
+${form.mode==="Delivery"?`<label>Delivery address</label><textarea rows="2" oninput="form.addr=this.value">${esc(form.addr)}</textarea>`:""}
+<label>Notes (optional)</label><input value="${esc(form.note)}" oninput="form.note=this.value" placeholder="Less sugar, no ice...">
+<p style="color:var(--mut);font-size:13px">Tap the button to send your order on WhatsApp. We will confirm and share payment details in the chat.</p>
+<button class="wa" onclick="send()">Order on WhatsApp</button><button class="g" style="width:100%;margin-top:8px" onclick="cartOpen=false;render()">Keep browsing</button></div></div>`}
+function send(){
+if(!form.name.trim()){alert("Please enter your name");return}
+if(form.mode==="Delivery"&&!form.addr.trim()){alert("Please enter your delivery address");return}
+let m=`Hi ${S.settings.name}! New order:\n`;
+S.items.filter(i=>cart[i.id]).forEach(i=>{m+=`• ${cart[i.id]} x ${i.name} - ${money(cart[i.id]*i.price)}\n`});
+m+=`\nTotal: ${money(total())}\nName: ${form.name}\n${form.mode}`+(form.mode==="Delivery"?`: ${form.addr}`:"")+(form.note?`\nNote: ${form.note}`:"")+`\n\nPlease send payment details.`;
+window.open("https://wa.me/"+S.settings.wa.replace(/\D/g,"")+"?text="+encodeURIComponent(m),"_blank")}
+/* ---- Admin ---- */
+function adminHtml(){
+const tb=["menu","offers","posts","settings"].map(t=>`<button class="${tab===t?"on":""}" onclick="tab='${t}';render()">${t[0].toUpperCase()+t.slice(1)}</button>`).join("");
+let b="";
+if(tab==="menu"){
+b=S.items.map((i,k)=>`<div class="ed"><div class="two"><div><label>Name</label><input value="${esc(i.name)}" oninput="S.items[${k}].name=this.value"></div><div><label>Price (${CUR})</label><input type="number" step="0.1" value="${i.price}" oninput="S.items[${k}].price=parseFloat(this.value)||0"></div></div>
+<div class="two"><div><label>Category</label><select onchange="S.items[${k}].cat=this.value">${S.cats.map(c=>`<option ${c===i.cat?"selected":""}>${esc(c)}</option>`).join("")}</select></div><div><label>Emoji</label><input value="${esc(i.emoji)}" oninput="S.items[${k}].emoji=this.value"></div></div>
+<label>Description</label><input value="${esc(i.desc)}" oninput="S.items[${k}].desc=this.value">
+<div class="row" style="border:0"><label><input type="checkbox" style="width:auto" ${i.sold?"checked":""} onchange="S.items[${k}].sold=this.checked"> Sold out</label><button class="rm" onclick="if(confirm('Delete this item?')){S.items.splice(${k},1);render()}">Delete</button></div></div>`).join("")+
+`<button onclick="S.items.push({id:Date.now(),cat:S.cats[0],name:'New item',price:0,emoji:'☕',desc:''});render()">+ Add item</button>
+<h3 style="margin:16px 0 6px">Categories</h3><input value="${esc(S.cats.join(", "))}" onchange="S.cats=this.value.split(',').map(x=>x.trim()).filter(Boolean);render()"><small style="color:var(--mut)">Separate with commas. Items keep their category name, so edit items after renaming.</small>`}
+if(tab==="offers"){
+b=`<label>Top banner (leave empty to hide)</label><input value="${esc(S.banner)}" oninput="S.banner=this.value">`+list("offers")}
+if(tab==="posts")b=list("posts");
+if(tab==="settings"){const f=(k,l)=>`<label>${l}</label><input value="${esc(S.settings[k])}" oninput="S.settings['${k}']=this.value">`;
+b=f("name","Cafe name")+f("tagline","Tagline")+f("wa","WhatsApp number (digits, with country code)")+f("address","Address")+f("hours","Opening hours text")+f("map","Google Maps link")+f("instagram","Instagram link")+f("tiktok","TikTok link")+f("facebook","Facebook link")}
+return `<div class="ov"><div class="sheet"><div class="row" style="border:0"><h2 style="margin:0">Admin</h2><span><button class="g" onclick="admin=false;render()">Close</button> <button class="g" onclick="fbOut()">Log out</button></span></div><div class="tabs">${tb}</div>${b}
+<button class="wa" style="margin-top:14px" onclick="save()">Save and publish to website</button></div></div>`}
+function list(k){return S[k].map((x,n)=>`<div class="ed"><label>Title</label><input value="${esc(x.title)}" oninput="S.${k}[${n}].title=this.value"><label>Text</label><textarea rows="4" oninput="S.${k}[${n}].text=this.value">${esc(x.text)}</textarea><button class="rm" onclick="S.${k}.splice(${n},1);render()">Delete</button></div>`).join("")+`<button onclick="S.${k}.unshift({title:'',text:''});render()">+ Add ${k==="offers"?"offer":"recipe / news"}</button>`}
+async function save(){try{await window.fbSave(S);alert("Saved! Your website is updated.");admin=false;render()}catch(e){alert("Save failed: "+(e.message||e))}}
+async function doLogin(){try{await window.fbLogin($("#le").value.trim(),$("#lp").value);loginOpen=false;loginErr=""}catch(e){loginErr="Wrong email or password";render()}}
+function loginHtml(){return `<div class="ov" onclick="if(event.target===this){loginOpen=false;render()}"><div class="sheet"><h2 style="margin-top:0">Staff login</h2><label>Email</label><input id="le" type="email" autocomplete="username"><label>Password</label><input id="lp" type="password" autocomplete="current-password"><p style="color:#ff8f8f">${esc(loginErr)}</p><button class="wa" onclick="doLogin()">Log in</button></div></div>`}
+window.setS=d=>{S=d;render()};window.setAdmin=v=>{isAdmin=v;if(!v)admin=false;render()};
+window.fbLogin=async()=>{throw new Error("Not set up")};window.fbOut=()=>{};window.fbSave=async()=>{throw new Error("Firebase is not set up yet")};
+render();
+</script>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,doc,getDoc,setDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const cfg={apiKey:"AIzaSyDoH4CG4elRY3FdoiSa0qqroSIrMLl9p2c",authDomain:"street-caffeine-9b94c.firebaseapp.com",projectId:"street-caffeine-9b94c",storageBucket:"street-caffeine-9b94c.firebasestorage.app",messagingSenderId:"981288859962",appId:"1:981288859962:web:12409e2ee33962cf68b803"};
+if(!cfg.apiKey.startsWith("PASTE")){
+const app=initializeApp(cfg),auth=getAuth(app),db=getFirestore(app),ref=doc(db,"site","main");
+window.fbLogin=(e,p)=>signInWithEmailAndPassword(auth,e,p);
+window.fbOut=()=>signOut(auth);
+window.fbSave=s=>setDoc(ref,{json:JSON.stringify(s)});
+onAuthStateChanged(auth,u=>window.setAdmin(!!u));
+try{const d=await getDoc(ref);if(d.exists())window.setS(JSON.parse(d.data().json))}catch(e){console.warn(e)}
+}
+</script>
+</body>
+</html>
